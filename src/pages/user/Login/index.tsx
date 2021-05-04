@@ -1,20 +1,10 @@
-import {
-  AlipayCircleOutlined,
-  LockOutlined,
-  MobileOutlined,
-  TaobaoCircleOutlined,
-  UserOutlined,
-  WeiboCircleOutlined,
-} from '@ant-design/icons';
-import { Alert, Space, message, Tabs } from 'antd';
+import { LockOutlined, UserOutlined, WeiboCircleOutlined } from '@ant-design/icons';
+import { Alert, message, Tabs } from 'antd';
 import React, { useState } from 'react';
-import ProForm, { ProFormCaptcha, ProFormCheckbox, ProFormText } from '@ant-design/pro-form';
+import ProForm, { ProFormCheckbox, ProFormText } from '@ant-design/pro-form';
 import { useIntl, Link, history, FormattedMessage, SelectLang, useModel } from 'umi';
 import Footer from '@/components/Footer';
-// import { login } from '@/services/ant-design-pro/api';
-import { login, adminLogin } from '@/services/api';
-import { getFakeCaptcha } from '@/services/ant-design-pro/login';
-
+import { adminLogin } from '@/services/api';
 import styles from './index.less';
 
 const LoginMessage: React.FC<{
@@ -30,16 +20,6 @@ const LoginMessage: React.FC<{
   />
 );
 
-/** 此方法会跳转到 redirect 参数所在的位置 */
-/* const goto = () => {
-  if (!history) return;
-  setTimeout(() => {
-    const { query } = history.location;
-    const { redirect } = query as { redirect: string };
-    history.push(redirect || '/');
-  }, 10);
-}; */
-
 const Login: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
   const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
@@ -48,31 +28,19 @@ const Login: React.FC = () => {
 
   const intl = useIntl();
 
-  /*  const fetchUserInfo = async () => {
-    const userInfo = await initialState?.fetchUserInfo?.();
-    if (userInfo) {
-      setInitialState({
-        ...initialState,
-        currentUser: userInfo,
-      });
-    }
-  }; */
   //
   const handleSubmit = async (values: API.LoginParams) => {
     setSubmitting(true);
     try {
       const msg = await adminLogin({ ...values, type });
-      console.log(msg);
       if (msg.status === 'ok') {
         message.success('登录成功！');
-        // await fetchUserInfo();
         localStorage.setItem('admin', JSON.stringify(msg.user));
-
+        localStorage.setItem('token', msg.token);
         setInitialState({
           ...initialState,
           currentUser: JSON.parse(localStorage.getItem('admin')),
         });
-
         if (!history) return;
         setTimeout(() => {
           const { query } = history.location;
@@ -86,7 +54,6 @@ const Login: React.FC = () => {
         setSubmitting(false);
         return;
       }
-      // 如果失败去设置用户错误信息
       setUserLoginState(msg);
     } catch (error) {
       message.error('登录失败，请重试！');
@@ -155,10 +122,6 @@ const Login: React.FC = () => {
                     size: 'large',
                     prefix: <UserOutlined className={styles.prefixIcon} />,
                   }}
-                  /* placeholder={intl.formatMessage({
-                    id: 'pages.login.username.placeholder',
-                    defaultMessage: '用户名',
-                  })} */
                   rules={[
                     {
                       required: true,
@@ -177,10 +140,6 @@ const Login: React.FC = () => {
                     size: 'large',
                     prefix: <LockOutlined className={styles.prefixIcon} />,
                   }}
-                  /* placeholder={intl.formatMessage({
-                    id: 'pages.login.password.placeholder',
-                    defaultMessage: '密码: ant.design',
-                  })} */
                   rules={[
                     {
                       required: true,
@@ -212,12 +171,6 @@ const Login: React.FC = () => {
               </a>
             </div>
           </ProForm>
-          {/* <Space className={styles.other}>
-            <FormattedMessage id="pages.login.loginWith" defaultMessage="其他登录方式" />
-            <AlipayCircleOutlined className={styles.icon} />
-            <TaobaoCircleOutlined className={styles.icon} />
-            <WeiboCircleOutlined className={styles.icon} />
-          </Space> */}
         </div>
       </div>
       <Footer />

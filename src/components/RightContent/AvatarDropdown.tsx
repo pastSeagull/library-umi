@@ -1,12 +1,11 @@
 import React, { useCallback } from 'react';
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
-import { Avatar, Menu, Spin } from 'antd';
+import { Menu, Spin } from 'antd';
 import { history, useModel } from 'umi';
 import { stringify } from 'querystring';
 import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
-// import { outLogin } from '@/services/ant-design-pro/api';
-import { outLogin } from '@/services/api';
+// import { outLogin } from '@/services/api';
 
 export type GlobalHeaderRightProps = {
   menu?: boolean;
@@ -19,26 +18,8 @@ export type GlobalHeaderRightProps = {
 const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
   const { initialState, setInitialState } = useModel('@@initialState');
 
-  /*   const loginOut = async () => {
-    await outLogin();
-    setInitialState({ ...initialState, currentUser: undefined });
-
-    console.log(initialState);
-
-    const { query = {}, pathname } = history.location;
-    const { redirect } = query;
-    // Note: There may be security issues, please note
-    if (window.location.pathname !== '/user/login' && !redirect) {
-      history.replace({
-        pathname: '/user/login',
-        search: stringify({
-          redirect: pathname,
-        }),
-      });
-    }
-  }; */
   const loginOut = async () => {
-    await outLogin(localStorage.getItem('token') || '');
+    // await outLogin(localStorage.getItem('token') || '');
     localStorage.removeItem('token');
     localStorage.removeItem('admin');
     const { query = {}, pathname } = history.location;
@@ -96,7 +77,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
 
   const menuHeaderDropdown = (
     <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
-      <Menu.Item key="center">
+      {/* <Menu.Item key="center">
         <UserOutlined />
         个人中心
       </Menu.Item>
@@ -104,7 +85,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
         <SettingOutlined />
         个人设置
       </Menu.Item>
-      <Menu.Divider />
+      <Menu.Divider /> */}
       <Menu.Item key="logout">
         <LogoutOutlined />
         退出登录

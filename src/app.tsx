@@ -2,18 +2,13 @@ import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
 import { PageLoading } from '@ant-design/pro-layout';
 import { notification, message } from 'antd';
 import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
-import { history, Link } from 'umi';
+import { history } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
 import type { ResponseError } from 'umi-request';
+import { extend } from 'umi-request';
 
 //
-import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
-// import { currentUser as queryCurrentUser } from './services/api';
-import currentUsers from './currentUser';
-
-import { BookOutlined, LinkOutlined } from '@ant-design/icons';
-
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
@@ -30,32 +25,8 @@ export async function getInitialState(): Promise<{
   currentUser?: API.CurrentUser;
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
 }> {
-  /* const fetchUserInfo = async () => {
-    try {
-      // const currentUser = await queryCurrentUser();
-      // const currentUser = await currentUsers();
-
-      const currentUser: any = JSON.parse(localStorage.getItem('admin') || '');
-      if (!currentUser) {
-        return {
-          data: {
-            isLogin: false,
-          },
-          errorCode: '401',
-          errorMessage: '请先登录！',
-          success: true,
-        };
-      }
-
-      return currentUser;
-    } catch (error) {
-      history.push(loginPath);
-    }
-    return undefined;
-  }; */
   // 如果是登录页面，不执行
   if (history.location.pathname !== loginPath) {
-    // const currentUser = await fetchUserInfo();
     // 登录捕获
     try {
       const currentUser: any = JSON.parse(localStorage.getItem('admin') || '');
@@ -67,14 +38,8 @@ export async function getInitialState(): Promise<{
       message.error('请登录后在进行操作');
       history.push('/user/login');
     }
-    /* return {
-      fetchUserInfo,
-      currentUser,
-      settings: {},
-    }; */
   }
   return {
-    // fetchUserInfo,
     settings: {},
   };
 }
@@ -150,3 +115,17 @@ const errorHandler = (error: ResponseError) => {
 export const request: RequestConfig = {
   errorHandler,
 };
+/* request.interceptors.request.use(async (url, options) => {
+  const token = localStorage.getItem('token');
+  const headers = {
+    'Content-Type': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded',
+  };
+  if (token) {
+    headers.token = token;
+  }
+  return {
+    url,
+    options: { ...options, headers },
+  };
+}); */

@@ -1,5 +1,5 @@
 import type { ProColumns } from '@ant-design/pro-table';
-import { deleteBook } from '@/services/api'
+import { deleteBook } from '@/services/api';
 
 type books = {
   url: string;
@@ -11,7 +11,7 @@ type books = {
   ISBN: string;
   paulisher: string;
   state: any;
-}
+};
 // 借阅管理列表内容
 const columns: ProColumns<books>[] = [
   {
@@ -67,16 +67,19 @@ const columns: ProColumns<books>[] = [
     valueType: 'option',
     render: (text, record, action) => [
       <a
-      onClick={() => {
-        console.log(record.book_id)
-        deleteBook(record.book_id)
-        /* action.startEditable?.(record.id); */
-      }}
-      href={record.url} target="_blank" rel="noopener noreferrer" key="view">
+        onClick={() => {
+          console.log(record.book_id);
+          deleteBook(record.book_id);
+        }}
+        href={record.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        key="view"
+      >
         删除
       </a>,
     ],
   },
 ];
 
-export default columns
+export default columns;

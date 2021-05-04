@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { Button, Menu, message } from 'antd';
+import { useRef, useEffect, useState } from 'react';
+import { Button, message } from 'antd';
 import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
 import { FormattedMessage } from 'umi';
@@ -34,7 +34,7 @@ const handleAdd = async (fields: API.RuleListItem) => {
 const handleUpdate = async (fields: any) => {
   const hide = message.loading('正在修改');
   try {
-    await borrowRenew({ ...fields });
+    await borrowUpdate({ ...fields });
     hide();
     message.success('修改成功');
     return true;
@@ -45,7 +45,7 @@ const handleUpdate = async (fields: any) => {
   }
 };
 // renew
-const handRenew = async (fields: any) => {
+/* const handRenew = async (fields: any) => {
   const hide = message.loading('正在修改');
   try {
     await borrowUpdate({ ...fields });
@@ -57,7 +57,7 @@ const handRenew = async (fields: any) => {
     message.error('续借失败请重试！');
     return false;
   }
-};
+}; */
 
 // 暂时未分离出来，和columns重复了
 type borrow = {

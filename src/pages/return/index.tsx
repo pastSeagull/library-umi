@@ -1,8 +1,5 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { Button, Menu, message } from 'antd';
+import { useRef, useEffect, useState } from 'react';
 import type { ActionType, ProColumns } from '@ant-design/pro-table';
-import { PlusOutlined } from '@ant-design/icons';
-import { FormattedMessage } from 'umi';
 import type { FormInstance } from 'antd';
 import ProTable from '@ant-design/pro-table';
 import { ModalForm, ProFormText, ProFormDateTimeRangePicker } from '@ant-design/pro-form';
@@ -38,7 +35,6 @@ const Lend = () => {
   const columns: ProColumns<re>[] = [
     {
       dataIndex: 'return_id',
-      // valueType: 'indexBorder',
       width: 48,
       search: false,
     },
@@ -85,31 +81,6 @@ const Lend = () => {
       ellipsis: true,
       search: false,
     },
-    /* {
-      title: '操作',
-      valueType: 'option',
-      render: (text, record, action) => [
-        <a
-          key="config"
-          onClick={() => {
-            list.current = record;
-            editRef.current?.resetFields();
-            handleUpdateModalVisible(true);
-          }}
-        >
-          编辑
-        </a>,
-        <a
-          onClick={() => {}}
-          href={record.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          key="view"
-        >
-          归还
-        </a>,
-      ],
-    }, */
   ];
 
   return (

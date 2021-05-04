@@ -1,18 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ActionType } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-// import Addclassify from './components/addclassify';
-// import columns from './components/columns';
 import { FormattedMessage } from 'umi';
 import { ModalForm, ProFormText, ProFormSelect } from '@ant-design/pro-form';
 import { PlusOutlined } from '@ant-design/icons';
-import { tagcolAll } from '@/services/api';
 import type { ProColumns } from '@ant-design/pro-table';
 import type { FormInstance } from 'antd';
 import { message, Button } from 'antd';
-import { tagcolDel, tagcolAdd, tagcolupdata } from '@/services/api';
+import { tagcolDel, tagcolAdd, tagcolupdata, tagcolAll } from '@/services/api';
 
-// 暂时未分离出来，和columns重复了
 type tag = {
   url: string;
   tag_id: number;

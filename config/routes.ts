@@ -35,7 +35,6 @@
     name: '用户管理',
     component: './userControl',
   },
-
   {
     path: '/adminControl',
     name: '管理员',
@@ -47,20 +46,9 @@
     component: './classify',
   },
   {
-    path: '/Text',
-    name: 'text',
-    component: './Text',
-  },
-  {
     path: '/account/center',
     // name: 'center',
     component: './center',
-  },
-  {
-    path: '/welcome',
-    name: 'welcome',
-    icon: 'smile',
-    component: './Welcome',
   },
   {
     path: '/admin',
@@ -79,14 +67,8 @@
     ],
   },
   {
-    name: 'list.table-list',
-    icon: 'table',
-    path: '/list',
-    component: './TableList',
-  },
-  {
     path: '/',
-    redirect: '/welcome',
+    redirect: './lend',
   },
   {
     component: './404',

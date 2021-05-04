@@ -6,8 +6,6 @@ import { ModalForm, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
 import ProTable from '@ant-design/pro-table';
 import { FormattedMessage } from 'umi';
 import { PlusOutlined } from '@ant-design/icons';
-
-// import columns from './components/columns';
 import { book, deleteBook, addBook, updateBook } from '@/services/api';
 
 type books = {

@@ -1,16 +1,7 @@
 import { request } from 'umi';
 
-const { ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION } = process.env;
-
-let access = ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site' ? 'admin' : '';
-
-const getAccess = () => {
-  return access;
-};
-
 // 登录
 export async function login(body: any, options?: Record<string, any>) {
-  console.log(getAccess());
   return request<API.LoginResult>('/api/v1/login', {
     method: 'POST',
     headers: {
@@ -24,28 +15,32 @@ export async function login(body: any, options?: Record<string, any>) {
 export async function adminLogin(body: any, options?: Record<string, any>) {
   return request<API.LoginResult>('/api/v1/adminLogin', {
     method: 'POST',
+    // 拦截器不生效
     headers: {
       'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
     data: body,
     ...(options || {}),
   });
 }
 
-export async function outLogin(options?: Record<string, any>) {
-  console.log(getAccess());
+/* export async function outLogin(options?: Record<string, any>) {
   access = '';
   return request<Record<string, any>>('/api/v1/outLogin', {
     method: 'POST',
     ...(options || {}),
   });
 }
-
+ */
 // 获取用户信息
 export async function currentUser(options?: Record<string, any>) {
-  console.log(access);
   return request<API.CurrentUser>('/api/v1/currentUser', {
     method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     ...(options || {}),
   });
   /* if(getAccess()){
@@ -80,6 +75,10 @@ export async function borrowAll(
 ) {
   return request<API.RuleList>('/api/v1/borrow', {
     method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     params: {
       ...params,
     },
@@ -90,6 +89,10 @@ export async function borrowAll(
 export async function borrowAdd(params: any, options?: Record<string, any>) {
   return request<API.RuleList>('/api/v1/borrowAdd', {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     data: params,
     ...(options || {}),
   });
@@ -98,14 +101,24 @@ export async function borrowAdd(params: any, options?: Record<string, any>) {
 export async function borrowUpdate(params: any, options?: Record<string, any>) {
   return request<API.RuleList>('/api/v1/borrowUpdate', {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     data: params,
     ...(options || {}),
   });
 }
-export async function borrowRenew(params: any, options?: Record<string, any>) {
+export async function borrowRenew(borrow_id: any, options?: Record<string, any>) {
   return request<API.RuleList>('/api/v1/borrowRenew', {
-    method: 'POST',
-    data: params,
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+    params: {
+      borrow_id,
+    },
     ...(options || {}),
   });
 }
@@ -125,6 +138,10 @@ export async function book(
 ) {
   return request<API.RuleList>('/api/v1/findAll', {
     method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     params: {
       ...params,
     },
@@ -135,6 +152,10 @@ export async function book(
 export async function addBook(params: any, options?: Record<string, any>) {
   return request<API.RuleList>('/api/v1/addBook', {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     data: params,
     ...(options || {}),
   });
@@ -144,6 +165,10 @@ export async function addBook(params: any, options?: Record<string, any>) {
 export async function deleteBook(params: any, options?: Record<string, any>) {
   return request<API.RuleList>('/api/v1/deleteBook', {
     method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     params: {
       // 单个参数
       id: params,
@@ -156,6 +181,10 @@ export async function deleteBook(params: any, options?: Record<string, any>) {
 export async function updateBook(params: any, options?: Record<string, any>) {
   return request<API.RuleList>('/api/v1/updateBook', {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     data: params,
     ...(options || {}),
   });
@@ -172,6 +201,10 @@ export async function UserAll(
 ) {
   return request<API.RuleList>('/api/v1/userAll', {
     method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     params: {
       ...params,
     },
@@ -182,6 +215,10 @@ export async function UserAll(
 export async function addUser(params: any, options?: Record<string, any>) {
   return request<API.RuleList>('/api/v1/useradd', {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     data: params,
     ...(options || {}),
   });
@@ -190,6 +227,10 @@ export async function addUser(params: any, options?: Record<string, any>) {
 export async function userDel(params: any, options?: Record<string, any>) {
   return request<API.RuleList>('/api/v1/userDel', {
     method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     params: {
       // 单个参数
       id: params,
@@ -201,6 +242,10 @@ export async function userDel(params: any, options?: Record<string, any>) {
 export async function userUpdate(params: any, options?: Record<string, any>) {
   return request<API.RuleList>('/api/v1/userUpdate', {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     data: params,
     ...(options || {}),
   });
@@ -217,6 +262,10 @@ export async function tagcolAll(
 ) {
   return request<API.RuleList>('/api/v1/tagcolAll', {
     method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     params: {
       ...params,
     },
@@ -227,6 +276,10 @@ export async function tagcolAll(
 export async function tagcolAdd(params: any, options?: Record<string, any>) {
   return request<API.RuleList>('/api/v1/tagcolAdd', {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     data: params,
     ...(options || {}),
   });
@@ -235,6 +288,10 @@ export async function tagcolAdd(params: any, options?: Record<string, any>) {
 export async function tagcolupdata(params: any, options?: Record<string, any>) {
   return request<API.RuleList>('/api/v1/tagcolupdata', {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     data: params,
     ...(options || {}),
   });
@@ -243,6 +300,10 @@ export async function tagcolupdata(params: any, options?: Record<string, any>) {
 export async function tagcolDel(params: any, options?: Record<string, any>) {
   return request<API.RuleList>('/api/v1/tagcolDel', {
     method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     params: {
       // 单个参数
       id: params,
@@ -262,6 +323,10 @@ export async function adminAll(
 ) {
   return request<API.RuleList>('/api/v1/adminAll', {
     method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     params: {
       ...params,
     },
@@ -271,7 +336,37 @@ export async function adminAll(
 export async function adminAdd(params: any, options?: Record<string, any>) {
   return request<API.RuleList>('/api/v1/adminAdd', {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     data: params,
+    ...(options || {}),
+  });
+}
+export async function adminUpdate(params: any, options?: Record<string, any>) {
+  return request<API.RuleList>('/api/v1/adminUpdate', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+    data: params,
+    ...(options || {}),
+  });
+}
+
+export async function adminDel(params: any, options?: Record<string, any>) {
+  return request<API.RuleList>('/api/v1/adminDel', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+    params: {
+      // 单个参数
+      id: params,
+    },
     ...(options || {}),
   });
 }
@@ -284,6 +379,10 @@ export async function returnAdd(params: any, actual: any, options?: Record<strin
   };
   return request<API.RuleList>('/api/v1/returnAdd', {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     data,
     ...(options || {}),
   });
@@ -291,6 +390,10 @@ export async function returnAdd(params: any, actual: any, options?: Record<strin
 export async function borrowDel(params: any, options?: Record<string, any>) {
   return request<API.RuleList>('/api/v1/borrowDel', {
     method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     params: {
       // 单个参数
       id: params,
@@ -309,6 +412,10 @@ export async function returnAll(
 ) {
   return request<API.RuleList>('/api/v1/returnAll', {
     method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
     params: {
       ...params,
     },

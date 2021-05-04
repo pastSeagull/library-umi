@@ -1,15 +1,17 @@
 import { useRef, useEffect, useState } from 'react';
-import { Button, Menu, message } from 'antd';
+import { Button, message } from 'antd';
 import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
 import { FormattedMessage } from 'umi';
 import type { FormInstance } from 'antd';
 import ProTable from '@ant-design/pro-table';
 import { ModalForm, ProFormText } from '@ant-design/pro-form';
-import { adminAll, adminAdd, userUpdate, userDel } from '@/services/api';
+import { adminAll, adminAdd, adminUpdate, adminDel } from '@/services/api';
 
 type admins = {
+  url: string;
   admin_id: number;
+  user_certificate: number;
   admin_name: string;
   admin_password: string;
   admin_sex: string;
@@ -23,7 +25,7 @@ type admins = {
 const handleUpdate = async (fields: any) => {
   const hide = message.loading('正在修改');
   try {
-    await userUpdate({ ...fields });
+    await adminUpdate({ ...fields });
     hide();
     message.success('修改成功');
     return true;
@@ -137,7 +139,7 @@ const AdminControl = () => {
         </a>,
         <a
           onClick={() => {
-            userDel(record.user_certificate)
+            adminDel(record.admin_id)
               .then(() => {
                 message.success('删除成功！');
                 actionRef.current?.reload();
@@ -146,7 +148,6 @@ const AdminControl = () => {
                 message.success('删除失败请重试！');
                 actionRef.current?.reload();
               });
-            /* action.startEditable?.(record.id); */
           }}
           href={record.url}
           target="_blank"
@@ -256,14 +257,14 @@ const AdminControl = () => {
           },
         }}
         initialValues={{
-          user_certificate: list.current.user_certificate,
-          user_name: list.current.user_name,
-          password: list.current.password,
-          user_sex: list.current.user_sex,
-          lend: list.current.lend,
-          borrowed: list.current.borrowed,
-          is_loss: list.current.is_loss,
-          unpaid: list.current.unpaid,
+          admin_id: list.current.admin_id,
+          admin_name: list.current.admin_name,
+          admin_password: list.current.admin_password,
+          admin_sex: list.current.admin_sex,
+          admin_email: list.current.admin_email,
+          admin_telephone: list.current.admin_telephone,
+          admin_mark: list.current.admin_mark,
+          purview: list.current.purview,
         }}
         onFinish={async (value) => {
           const success = await handleUpdate(value as API.RuleListItem);
@@ -275,14 +276,14 @@ const AdminControl = () => {
           }
         }}
       >
-        <ProFormText disabled={true} name="user_certificate" label="读者号" />
-        <ProFormText name="user_name" label="用户名" />
-        <ProFormText name="password" label="密码" />
-        <ProFormText name="user_sex" label="性别" />
-        <ProFormText name="lend" label="可借阅数量" />
-        <ProFormText name="borrowed" label="已借阅数量" />
-        <ProFormText name="is_loss" label="是否挂失" />
-        <ProFormText name="unpaid" label="欠款罚金" />
+        <ProFormText disabled={true} name="admin_id" label="管理员id" />
+        <ProFormText required={true} width="300px" name="admin_name" label="名字" />
+        <ProFormText required={true} width="300px" name="admin_password" label="密码" />
+        <ProFormText required={true} width="300px" name="admin_sex" label="性别" />
+        <ProFormText required={true} width="300px" name="admin_email" label="邮箱" />
+        <ProFormText required={true} width="300px" name="admin_telephone" label="电话" />
+        <ProFormText required={true} width="300px" name="admin_mark" label="联系方式" />
+        <ProFormText required={true} width="300px" name="purview" label="权限" />
       </ModalForm>
     </div>
   );
