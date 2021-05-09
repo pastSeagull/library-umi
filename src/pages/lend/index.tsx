@@ -67,6 +67,7 @@ type borrow = {
   book_isbn: string;
   lend_date: string;
   return_date: string;
+  is_renew: number;
 };
 
 const Lend = () => {
@@ -142,7 +143,6 @@ const Lend = () => {
         <a
           key="config"
           onClick={() => {
-            console.log(record.borrow_id);
             borrowRenew(record.borrow_id)
               .then(() => {
                 message.success('续借成功！');
@@ -253,6 +253,7 @@ const Lend = () => {
         }}
       >
         <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
           width="300px"
           name="user_certificate"
           label="读者编号"
@@ -261,13 +262,19 @@ const Lend = () => {
           required={true}
         />
         <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
           required={true}
           width="300px"
           name="book_isbn"
           label="图书编号"
           placeholder="请输入图书编号"
         />
-        <ProFormDateTimeRangePicker required={true} name="dateTimeRange" label="借阅时间选择" />
+        <ProFormDateTimeRangePicker
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          name="dateTimeRange"
+          label="借阅时间选择"
+        />
       </ModalForm>
 
       {/* 编辑窗口 */}
@@ -294,17 +301,23 @@ const Lend = () => {
         }}
       >
         <ProFormText disabled={true} name="borrow_id" label="id" />
-        <ProFormText name="user_certificate" label="读者编号" />
-        <ProFormText name="book_isbn" label="图书编号" />
-        <ProFormDateTimeRangePicker required={true} name="dateTimeRange" label="借阅时间选择" />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          name="user_certificate"
+          label="读者编号"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          name="book_isbn"
+          label="图书编号"
+        />
+        <ProFormDateTimeRangePicker
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          name="dateTimeRange"
+          label="借阅时间选择"
+        />
       </ModalForm>
-      <button
-        onClick={() => {
-          console.log(initialState);
-        }}
-      >
-        dian
-      </button>
     </div>
   );
 };

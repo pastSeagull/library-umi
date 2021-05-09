@@ -230,10 +230,34 @@ const userControl = () => {
           }
         }}
       >
-        <ProFormText required={true} width="300px" name="user_name" label="用户名" />
-        <ProFormText required={true} width="300px" name="password" label="密码" />
-        <ProFormText required={true} width="300px" name="user_sex" label="性别" />
-        <ProFormText required={true} width="300px" name="lend" label="可借阅数量" />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="user_name"
+          label="用户名"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="password"
+          label="密码"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="user_sex"
+          label="性别"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="lend"
+          label="可借阅数量"
+        />
       </ModalForm>
       {/* 编辑窗口 */}
       <ModalForm
@@ -273,13 +297,33 @@ const userControl = () => {
         }}
       >
         <ProFormText disabled={true} name="user_certificate" label="读者号" />
-        <ProFormText name="user_name" label="用户名" />
-        <ProFormText name="password" label="密码" />
-        <ProFormText name="user_sex" label="性别" />
-        <ProFormText name="lend" label="可借阅数量" />
-        <ProFormText name="borrowed" label="已借阅数量" />
-        <ProFormText name="is_loss" label="是否挂失" />
-        <ProFormText name="unpaid" label="欠款罚金" />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          name="user_name"
+          label="用户名"
+        />
+        <ProFormText rules={[{ required: true, message: '必填项' }]} name="password" label="密码" />
+        <ProFormText rules={[{ required: true, message: '必填项' }]} name="user_sex" label="性别" />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          name="lend"
+          label="可借阅数量"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          name="borrowed"
+          label="已借阅数量"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          name="is_loss"
+          label="是否挂失"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          name="unpaid"
+          label="欠款罚金"
+        />
       </ModalForm>
     </div>
   );

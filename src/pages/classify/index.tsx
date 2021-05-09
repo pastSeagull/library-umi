@@ -74,7 +74,6 @@ const Classify = () => {
       dataIndex: 'tag_name',
       copyable: true,
       ellipsis: true,
-      tip: '标题过长会自动收缩',
     },
     {
       title: '操作',
@@ -176,7 +175,12 @@ const Classify = () => {
           }
         }}
       >
-        <ProFormText required={true} name="tag_name" label="分类名" />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          name="tag_name"
+          label="分类名"
+        />
         <ProFormSelect
           name="class_id"
           label="所属分类"
@@ -189,7 +193,7 @@ const Classify = () => {
             6: '科技',
           }}
           placeholder="Please select a classify"
-          rules={[{ required: true, message: 'Please select your classify!' }]}
+          rules={[{ required: true, message: '必填项' }]}
         />
       </ModalForm>
       {/* 编辑窗口 */}
@@ -213,8 +217,16 @@ const Classify = () => {
           }
         }}
       >
-        <ProFormText disabled={true} name="tag_id" />
-        <ProFormText name="tag_name" label="分类名" />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          disabled={true}
+          name="tag_id"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          name="tag_name"
+          label="分类名"
+        />
         <ProFormSelect
           name="class_id"
           label="所属分类"
@@ -227,7 +239,7 @@ const Classify = () => {
             6: '科技',
           }}
           placeholder="Please select a classify"
-          rules={[{ required: true, message: 'Please select your classify!' }]}
+          rules={[{ required: true, message: '必填项' }]}
         />
       </ModalForm>
     </div>

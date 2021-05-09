@@ -227,13 +227,48 @@ const Book = () => {
           }
         }}
       >
-        <ProFormText required={true} name="book_name" label="图书名字" />
-        <ProFormText required={true} name="author" label="作者" />
-        <ProFormText required={true} name="book_intro" label="介绍" />
-        <ProFormText required={true} name="classify" label="分类" />
-        <ProFormText required={true} name="ISBN" label="ISBN" />
-        <ProFormText required={true} name="publisher" label="出版社" />
-        <ProFormText required={true} name="location" label="放置地点" />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          name="book_name"
+          label="图书名字"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          name="author"
+          label="作者"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          name="book_intro"
+          label="介绍"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          name="classify"
+          label="分类"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          name="ISBN"
+          label="ISBN"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          name="publisher"
+          label="出版社"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          name="location"
+          label="放置地点"
+        />
       </ModalForm>
 
       {/* 编辑窗口 */}
@@ -273,14 +308,31 @@ const Book = () => {
           }
         }}
       >
-        <ProFormText disabled={true} name="book_id" label="序号" />
-        <ProFormText name="book_name" label="图书名字" />
-        <ProFormText name="author" label="作者" />
-        <ProFormTextArea name="book_intro" label="介绍" />
-        <ProFormText name="classify" label="分类" />
-        <ProFormText name="ISBN" label="ISBN" />
-        <ProFormText name="publisher" label="出版社" />
-        <ProFormText name="location" label="位置" />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          disabled={true}
+          name="book_id"
+          label="序号"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          name="book_name"
+          label="图书名字"
+        />
+        <ProFormText rules={[{ required: true, message: '必填项' }]} name="author" label="作者" />
+        <ProFormTextArea
+          rules={[{ required: true, message: '必填项' }]}
+          name="book_intro"
+          label="介绍"
+        />
+        <ProFormText rules={[{ required: true, message: '必填项' }]} name="classify" label="分类" />
+        <ProFormText rules={[{ required: true, message: '必填项' }]} name="ISBN" label="ISBN" />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          name="publisher"
+          label="出版社"
+        />
+        <ProFormText rules={[{ required: true, message: '必填项' }]} name="location" label="位置" />
       </ModalForm>
     </div>
   );

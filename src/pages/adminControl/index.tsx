@@ -231,13 +231,55 @@ const AdminControl = () => {
           }
         }}
       >
-        <ProFormText required={true} width="300px" name="admin_name" label="名字" />
-        <ProFormText required={true} width="300px" name="admin_password" label="密码" />
-        <ProFormText required={true} width="300px" name="admin_sex" label="性别" />
-        <ProFormText required={true} width="300px" name="admin_email" label="邮箱" />
-        <ProFormText required={true} width="300px" name="admin_telephone" label="电话" />
-        <ProFormText required={true} width="300px" name="admin_mark" label="联系方式" />
-        <ProFormText required={true} width="300px" name="purview" label="权限" />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="admin_name"
+          label="名字"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="admin_password"
+          label="密码"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="admin_sex"
+          label="性别"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="admin_email"
+          label="邮箱"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="admin_telephone"
+          label="电话"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="admin_mark"
+          label="联系方式"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="purview"
+          label="权限"
+        />
       </ModalForm>
       {/* 编辑窗口 */}
       <ModalForm
@@ -276,14 +318,61 @@ const AdminControl = () => {
           }
         }}
       >
-        <ProFormText disabled={true} name="admin_id" label="管理员id" />
-        <ProFormText required={true} width="300px" name="admin_name" label="名字" />
-        <ProFormText required={true} width="300px" name="admin_password" label="密码" />
-        <ProFormText required={true} width="300px" name="admin_sex" label="性别" />
-        <ProFormText required={true} width="300px" name="admin_email" label="邮箱" />
-        <ProFormText required={true} width="300px" name="admin_telephone" label="电话" />
-        <ProFormText required={true} width="300px" name="admin_mark" label="联系方式" />
-        <ProFormText required={true} width="300px" name="purview" label="权限" />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          disabled={true}
+          name="admin_id"
+          label="管理员id"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="admin_name"
+          label="名字"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="admin_password"
+          label="密码"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="admin_sex"
+          label="性别"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="admin_email"
+          label="邮箱"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="admin_telephone"
+          label="电话"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="admin_mark"
+          label="联系方式"
+        />
+        <ProFormText
+          rules={[{ required: true, message: '必填项' }]}
+          required={true}
+          width="300px"
+          name="purview"
+          label="权限"
+        />
       </ModalForm>
     </div>
   );

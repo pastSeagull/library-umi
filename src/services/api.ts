@@ -406,7 +406,8 @@ export async function returnAll(
   params: {
     // query
     // 分类名
-    tag_name?: string;
+    user_id?: number;
+    book_isbn?: number;
   },
   options?: Record<string, any>,
 ) {

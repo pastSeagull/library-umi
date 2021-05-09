@@ -64,7 +64,7 @@ const Login: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.lang}>{SelectLang && <SelectLang />}</div>
+      {/* <div className={styles.lang}>{SelectLang && <SelectLang />}</div> */}
       <div className={styles.content}>
         <div className={styles.top}>
           <div className={styles.header}>
@@ -154,7 +154,7 @@ const Login: React.FC = () => {
                 />
               </>
             )}
-            <div
+            {/*  <div
               style={{
                 marginBottom: 24,
               }}
@@ -169,7 +169,7 @@ const Login: React.FC = () => {
               >
                 <FormattedMessage id="pages.login.forgotPassword" defaultMessage="忘记密码" />
               </a>
-            </div>
+            </div> */}
           </ProForm>
         </div>
       </div>
